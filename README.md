@@ -2,6 +2,33 @@
 
 Configurable Telegram group bot with OpenAI-compatible text generation, image generation, layered local memory, and reminders.
 
+## One-Command Server Install
+
+For a fresh Ubuntu/Debian VPS, SSH into the server and run:
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/7591059-dotcom/chat-bro-bot/main/install.sh | sudo bash
+```
+
+The installer will:
+
+- install system packages, Git, Node.js 22, and npm;
+- clone or update this repository in `/opt/chat-bro-bot`;
+- ask for the Telegram bot token, AI provider, model id, API key, trigger words, persona, and memory settings;
+- write `/opt/chat-bro-bot/.env`;
+- build the TypeScript project;
+- create a `chat-bro-bot` systemd service with autostart after reboot;
+- create an hourly `chat-bro-bot-health.timer` watchdog that restarts the service if it is down;
+- ask whether to start the bot immediately.
+
+Supported AI setup paths:
+
+- OpenAI official API with the Responses API.
+- Multi-model OpenAI-compatible aggregators, for example OpenRouter or a similar provider that exposes Claude, Gemini, Qwen, OpenAI, and other models through one API key.
+- Any custom OpenAI-compatible provider.
+
+Consumer web subscriptions for ChatGPT, Claude, Gemini, Codex, and similar products are not used directly by this bot. Use official API keys or a provider/aggregator that explicitly offers a server API.
+
 ## Features
 
 - Trigger words: `бро`, `братан`, `бот`, mentions, or replies to the bot.
